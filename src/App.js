@@ -1,23 +1,31 @@
-import logo from './logo.svg';
+import React,{useState} from 'react'
 import './App.css';
 
 function App() {
+
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [fullname, setFullname] = useState("");
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>Full Name Display</h1>
+      <form onSubmit={(e)=>{
+        e.preventDefault();
+        setFullname(`${fname} ${lname}`);
+      }}>
+      <div>
+      <label>First Name:</label>
+      <input type='text' value={fname} onChange={(e)=>setFname(e.target.value)}></input>
+      </div>
+      <div>
+      <label>Last Name:</label>
+      <input type='text' value={lname} onChange={(e)=>setLname(e.target.value)}></input>
+      </div>
+      <button >Submit</button>
+      </form>
+      {fullname && <h2>Full Name: {fullname}</h2>}
     </div>
   );
 }
